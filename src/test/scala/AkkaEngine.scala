@@ -12,13 +12,13 @@ trait AkkaEngine extends BeforeAndAfterAll {
   implicit val materializer = ActorFlowMaterializer()
 
   //override def beforeAll = {}
-  override def afterAll = {
-    Thread.sleep(1000)
+  override def afterAll() = {
+
     system.shutdown()
   }
 
-  def waitABit(seconds: Int = 1) = {
-    Thread.sleep(seconds * 1000)
+  def waitABit(seconds: Double = 0.1) = {
+    Thread.sleep((seconds * 1000).toInt)
   }
 
 

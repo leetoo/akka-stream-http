@@ -16,11 +16,18 @@ trait TweetsFixture {
 
   val akka = Hashtag("#akka")
 
-  // a list of tweets to analyze
-  val tweets: Source[Tweet, Unit] = Source(List(
+  private val twList: List[Tweet] = List(
     Tweet(Author("pippo"), 1L, "#twitter on #scala #twitter")
     , Tweet(Author("pippo"), 1L, "#scala is #fun and #akka too")
     , Tweet(Author("pluto"), 2L, "its #akka time")
-  ))
+    , Tweet(Author("minnie"), 3L, "#daisies")
+  )
+  // a list of tweets to analyze
+  val tweets: Source[Tweet, Unit] = Source(twList)
+
+  def numAuthors = 4
+  def numAuthorsWithAkka = 2
+  def numHashTags = 7
+  def numTweets = twList.size
 
 }
