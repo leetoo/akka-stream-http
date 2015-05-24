@@ -35,7 +35,7 @@ object TheDemo61_TcpFramedExample extends App {
       conn.flow.join(protocol.reversed).join(Flow[Message].collect {
         case Ping(id) => Pong(id):Message // This :Message IS needed otherwise scala doesn't understand see the video from ScalaDays
       }).run() // run the sink
-  }).run() // and run the bind
+  }).run() // and run the bind ???
   val myaddr = Await.result(server, 1.second)
 
   val client = Tcp().outgoingConnection(myaddr.localAddress)
@@ -45,6 +45,6 @@ object TheDemo61_TcpFramedExample extends App {
   val stack = protocol join client
 
 
-
+  // generates 10 Ping(x) and print back the results
   Source(0 to 10).map(Ping).via(stack).runForeach(println)
 }
