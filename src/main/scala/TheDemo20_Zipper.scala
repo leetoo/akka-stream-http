@@ -6,7 +6,7 @@ import akka.stream.{ActorFlowMaterializer, OperationAttributes}
 import scala.concurrent.Future
 import scala.concurrent.duration._
 
-object TheDemo10_Zipper extends App {
+object TheDemo20_Zipper extends App {
   implicit val sys=ActorSystem("TheDemo")
   implicit val mat=ActorFlowMaterializer()
 

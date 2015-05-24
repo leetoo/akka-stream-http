@@ -1,4 +1,4 @@
-import java.security.MessageDigest
+import java.security.{Security, MessageDigest}
 
 import akka.actor.ActorSystem
 import akka.stream.ActorFlowMaterializer
@@ -9,10 +9,14 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.Success
 
 
-
 object TheDemo05_ByteStringDigest extends App {
   implicit val sys=ActorSystem("TheDemo")
   implicit val mat=ActorFlowMaterializer()
+
+
+  /**
+   * see [[http://doc.akka.io/docs/akka-stream-and-http-experimental/1.0-RC3/scala/stream-cookbook.html]]
+   */
 
   import akka.stream.stage._
   def digestCalculator(algorithm: String) = new PushPullStage[ByteString, ByteString] {
@@ -46,9 +50,7 @@ object TheDemo05_ByteStringDigest extends App {
   // have a source of byteStrings
   val source=Source(List("line1","line2","line3")).map(ByteString(_))
 
-  source.transform( () => digestCalculator("SHA-256")).runForeach(println)
-
-
+  source.transform( () => digestCalculator("SHA-256")).runForeach(ba => println(s"Digest is '${bytes2hex(ba.toArray)}'"))
 
   Thread.sleep(100)
   sys.shutdown()
