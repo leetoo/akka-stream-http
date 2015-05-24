@@ -4,5 +4,6 @@
     <profile name="SBT 1" modules="akka-stream">
       <option name="postfixOps" value="true" />
     </profile>
+    <profile name="SBT 2" modules="akka-stream-http" />
   </component>
 </project>
