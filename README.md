@@ -1,5 +1,6 @@
 # akka-stream-http
-This is just a playground to test what Roland Kuhn showed in his demo at ScalaDays 2015 in March.
+This is just a playground to test what Roland Kuhn showed in his demo at ScalaDays 2015 in March ( or whatever ) .
+https://www.youtube.com/watch?v=DEQtNuhCW8g
 
 I discovered that many things changed and need to practice these concepts.
 
